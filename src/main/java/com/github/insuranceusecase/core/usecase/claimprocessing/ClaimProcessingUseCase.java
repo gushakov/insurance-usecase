@@ -16,6 +16,7 @@
 package com.github.insuranceusecase.core.usecase.claimprocessing;
 
 import com.github.insuranceusecase.core.model.InvalidDomainObjectError;
+import com.github.insuranceusecase.core.model.agent.AgentId;
 import com.github.insuranceusecase.core.model.claim.Claim;
 import com.github.insuranceusecase.core.model.claim.ClaimId;
 import com.github.insuranceusecase.core.model.claim.Claimant;
@@ -260,10 +261,22 @@ public class ClaimProcessingUseCase implements ClaimProcessingInputPort {
     public void agentVerifiesClaimDetailsWithinPolicyGuidelines(ClaimId claimId, PolicyNumber policyNumber) {
 
         /*
-            Here we have an example of how a "secondary"
+            Here we have an example of how a "secondary actor" (the assigned agent)
+            may intervene in the same use case where a claimant figures as the
+            "primary agent".
          */
 
-        securityOps.assertUserHasAgentPrivileges();
+        AgentId agentId;
+        try {
+            securityOps.assertUserHasAgentPrivileges();
+            agentId = securityOps.userAgentId();
+        } catch (UserNotAuthenticatedError | InsufficientAuthorizationError e) {
+
+            // FAILURE of interaction: current user is not authenticated or not an agent
+            presenter.presentErrorWhenUserIsNotAgent(e);
+            return;
+        }
+
 
         //  the rest of the implementation omitted for brevity
     }

@@ -1,5 +1,6 @@
 package com.github.insuranceusecase.core.port.security;
 
+import com.github.insuranceusecase.core.model.agent.AgentId;
 import com.github.insuranceusecase.core.model.client.ClientId;
 
 /**
@@ -28,7 +29,7 @@ public interface SecurityOperationsOutputPort {
     /**
      * Client ID of the currently authenticated user.
      *
-     * @return person ID of the user
+     * @return client ID of the user
      * @throws UserNotAuthenticatedError if the user is not authenticated
      */
     ClientId userClientId();
@@ -42,5 +43,13 @@ public interface SecurityOperationsOutputPort {
      *                                        does not have an agent role
      */
     void assertUserHasAgentPrivileges();
+
+    /**
+     * Agent ID of the currently authenticated user.
+     *
+     * @return agent ID of the user
+     * @throws UserNotAuthenticatedError if the user is not authenticated
+     */
+    AgentId userAgentId();
 
 }

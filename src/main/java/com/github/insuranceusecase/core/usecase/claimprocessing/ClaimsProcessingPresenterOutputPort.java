@@ -33,4 +33,6 @@ public interface ClaimsProcessingPresenterOutputPort extends ErrorHandlingPresen
     void presentErrorIfCannotPersistDeclinedClaim(Claim claim);
 
     void presentErrorIfCannotDeclineClaim(Claim claim);
+
+    void presentErrorWhenUserIsNotAgent(SecurityOperationsError e);
 }
