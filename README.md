@@ -6,6 +6,12 @@ article: ["Structuring use cases with goals"](https://web.archive.org/web/201706
 
 Here is a link to the companion article for this code on Medium.
 
-**Disclaimer**
-A lot of terminology used in the code is taken from Alistair's original article. I've tried to mark these occurrences
-clearly in the relevant comments (i.e.: with quotes).
+### COPYRIGHT DISCLAIMER
+
+The code in this project has been inspired by the article by Alistair Cockburn: "Structuring use cases with goals", 1995. 
+Article can be consulted from: https://web.archive.org/web/20170620145208/http://alistair.cockburn.us/Structuring+use+cases+with+goals
+
+The names of some methods and the terms used in the accompanying comments are taken exactly as they figure in the
+original article by Alistair. This is only for reasons of the illustration. All relevant copyrights are presumed
+reserved by Alistair Cockburn. 
+Alistair's site: https://alistair.cockburn.us/.

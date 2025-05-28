@@ -28,7 +28,7 @@ public enum ClaimStatus {
     Satisfied,
 
     /**
-     * State of the claim after it was rejected.
+     * State of the claim after it was declined.
      */
-    Rejected;
+    Declined;
 }

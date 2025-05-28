@@ -32,4 +32,15 @@ public interface SecurityOperationsOutputPort {
      * @throws UserNotAuthenticatedError if the user is not authenticated
      */
     ClientId userClientId();
+
+    /**
+     * Asserts that the current user is authenticated and
+     * has agent privileges.
+     *
+     * @throws UserNotAuthenticatedError      if the user is not authenticated
+     * @throws InsufficientAuthorizationError if the currently authenticated user
+     *                                        does not have an agent role
+     */
+    void assertUserHasAgentPrivileges();
+
 }

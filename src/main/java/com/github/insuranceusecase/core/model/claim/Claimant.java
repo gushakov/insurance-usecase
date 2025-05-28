@@ -10,7 +10,7 @@ import lombok.experimental.FieldDefaults;
 import java.util.Optional;
 
 /**
- * Aggregate. A claimant represents an insured party which
+ * Aggregate root. A claimant represents an insured party which
  * can issue claims.
  */
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)

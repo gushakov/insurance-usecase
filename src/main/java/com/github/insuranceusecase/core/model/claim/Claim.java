@@ -2,8 +2,10 @@ package com.github.insuranceusecase.core.model.claim;
 
 import com.github.insuranceusecase.core.model.InvalidDomainObjectError;
 import com.github.insuranceusecase.core.model.client.ClientId;
+import lombok.AccessLevel;
 import lombok.Builder;
-import lombok.Value;
+import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 
 import java.util.Optional;
 
@@ -12,7 +14,7 @@ import java.util.Optional;
  * reimbursement of any expenses incurred due to an
  * accident.
  */
-@Value
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class Claim {
 
     /**
@@ -23,6 +25,7 @@ public class Claim {
     /**
      * ID of the client associated with this claim.
      */
+    @Getter
     ClientId clientId;
 
     /**
@@ -87,4 +90,19 @@ public class Claim {
                 && justificationPolicy.isClaimDataEntryComplete(this);
     }
 
+    /**
+     * Updates this claim as been declined.
+     *
+     * @return new instance of {@linkplain Claim} with {@code claimStatus}
+     * updated to {@linkplain ClaimStatus#Declined}.
+     * @throws InvalidDomainObjectError if the claim's status does not allow
+     *                                  this operation
+     */
+    public Claim decline() {
+        if (claimStatus != ClaimStatus.Filed) {
+            throw new InvalidDomainObjectError("Cannot decline a claim. Current status is " + claimStatus);
+        }
+        return newClaim().claimStatus(ClaimStatus.Declined)
+                .build();
+    }
 }
